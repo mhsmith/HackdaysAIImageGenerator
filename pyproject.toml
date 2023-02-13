@@ -1,19 +1,19 @@
 # This project was generated using template: https://github.com/beeware/briefcase-template and branch: v0.3.12
 [tool.briefcase]
-project_name = "ip2p"
+project_name = "hackdays_ai"
 bundle = "com.anaconda"
 version = "0.0.1"
-url = "https://example.com/ip2p"
+url = "https://github.com/mhsmith/HackdaysAIImageGenerator"
 license = "MIT license"
-author = "Anaconda"
+author = "Malcolm Smith"
 author_email = "msmith@anaconda.com"
 
-[tool.briefcase.app.ip2p]
+[tool.briefcase.app.hackdays_ai]
 formal_name = "Hackdays AI image generator"
 description = "Hackdays AI image generator"
-icon = "src/ip2p/resources/ip2p"
+icon = "src/hackdays_ai/resources/hackdays_ai"
 sources = [
-    "src/ip2p",
+    "src/hackdays_ai",
 ]
 test_sources = [
     "tests",
@@ -29,18 +29,18 @@ test_requires = [
     "pytest",
 ]
 
-[tool.briefcase.app.ip2p.macOS]
+[tool.briefcase.app.hackdays_ai.macOS]
 requires = [
     "toga-cocoa~=0.3.0",
     "std-nslog~=1.0.0"
 ]
 
-[tool.briefcase.app.ip2p.linux]
+[tool.briefcase.app.hackdays_ai.linux]
 requires = [
     "toga-gtk~=0.3.0",
 ]
 
-[tool.briefcase.app.ip2p.linux.appimage]
+[tool.briefcase.app.hackdays_ai.linux.appimage]
 system_requires = [
     "gir1.2-webkit2-4.0",
     "libcairo2-dev",
@@ -54,30 +54,30 @@ linuxdeploy_plugins = [
     "DEPLOY_GTK_VERSION=3 gtk",
 ]
 
-[tool.briefcase.app.ip2p.linux.flatpak]
+[tool.briefcase.app.hackdays_ai.linux.flatpak]
 flatpak_runtime = "org.gnome.Platform"
 flatpak_runtime_version = "42"
 flatpak_sdk = "org.gnome.Sdk"
 
-[tool.briefcase.app.ip2p.windows]
+[tool.briefcase.app.hackdays_ai.windows]
 requires = [
     "toga-winforms~=0.3.0",
 ]
 
 # Mobile deployments
-[tool.briefcase.app.ip2p.iOS]
+[tool.briefcase.app.hackdays_ai.iOS]
 requires = [
     "toga-iOS~=0.3.0",
     "std-nslog~=1.0.0"
 ]
 
-[tool.briefcase.app.ip2p.android]
+[tool.briefcase.app.hackdays_ai.android]
 requires = [
     "toga-android~=0.3.0"
 ]
 
 # Web deployments
-[tool.briefcase.app.ip2p.web]
+[tool.briefcase.app.hackdays_ai.web]
 requires = [
     "toga-web~=0.3.0",
 ]

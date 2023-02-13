@@ -1,5 +1,5 @@
-InstructPix2Pix
-===============
+Hackdays AI image generator
+===========================
 
 Based on the article `"How to Make an AI Image Editing Chatbot"
 <https://towardsdatascience.com/how-to-make-an-ai-image-editing-chatbot-1ddd0209884>`__.

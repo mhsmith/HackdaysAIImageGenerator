@@ -14,7 +14,7 @@ PADDING = 8
 DESCRIPTION_FONT_SIZE = 15
 
 
-class InstructPix2Pix(toga.App):
+class HackdaysAIApp(toga.App):
 
     def startup(self):
         self.conversation = toga.Box(style=Pack(direction=COLUMN, padding=PADDING))
@@ -121,4 +121,4 @@ class InstructPix2Pix(toga.App):
 
 
 def main():
-    return InstructPix2Pix()
+    return HackdaysAIApp()
