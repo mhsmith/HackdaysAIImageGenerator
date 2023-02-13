@@ -5,7 +5,7 @@ bundle = "com.anaconda"
 version = "0.0.1"
 url = "https://github.com/mhsmith/HackdaysAIImageGenerator"
 license = "MIT license"
-author = "Malcolm Smith"
+author = "Anaconda, Inc."
 author_email = "msmith@anaconda.com"
 
 [tool.briefcase.app.hackdays_ai]

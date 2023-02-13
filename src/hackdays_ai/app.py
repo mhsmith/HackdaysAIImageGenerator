@@ -1,10 +1,12 @@
 import io
+from shutil import rmtree
+from threading import Thread
 
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
-from .model import new_image
+from .model import MODEL_DIR, load_model, new_image
 
 
 MIN_RESOLUTION = 256
@@ -12,11 +14,44 @@ MAX_RESOLUTION = 512
 
 PADDING = 8
 DESCRIPTION_FONT_SIZE = 15
+CAPTION_STYLE = Pack(text_align="center", padding=PADDING)
 
 
 class HackdaysAIApp(toga.App):
 
     def startup(self):
+        self.commands.add(
+            toga.Command(self.delete_model, "Delete model files", group=toga.Group.APP)
+        )
+
+        main_box = toga.Box(
+            style=Pack(direction=COLUMN),
+            children=[
+                toga.Box(style=Pack(flex=1)),
+                toga.Label(
+                    "Downloading model files: these are about 5 GB so please be patient.\n"
+                    "You can delete them later using the menu above."
+                    if not MODEL_DIR.exists()
+                    else "Loading model",
+                    style=CAPTION_STYLE),
+                toga.Box(style=Pack(flex=1))
+            ],
+        )
+
+        self.main_window = toga.MainWindow(title=self.formal_name)
+        self.main_window.content = main_box
+        self.main_window.show()
+        Thread(target=self.load_model).start()
+
+    def load_model(self):
+        load_model()
+        self.add_background_task(self.on_model_loaded)
+
+    def delete_model(self, _):
+        if MODEL_DIR.exists():
+            rmtree(MODEL_DIR)
+
+    def on_model_loaded(self, _):
         self.conversation = toga.Box(style=Pack(direction=COLUMN, padding=PADDING))
 
         self.resolution = self.labeled_slider(
@@ -57,6 +92,10 @@ class HackdaysAIApp(toga.App):
         main_box = toga.Box(
             style=Pack(direction=COLUMN),
             children=[
+                toga.Label("To visit this app's GitHub page, or delete the model files, "
+                           "use the menus above.\n"
+                           "A black image means the NSFW filter has been triggered.",
+                           style=CAPTION_STYLE),
                 toga.ScrollContainer(
                     style=Pack(flex=1, padding_bottom=PADDING),
                     content=self.conversation
@@ -64,10 +103,7 @@ class HackdaysAIApp(toga.App):
                 widgets,
             ]
         )
-
-        self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
-        self.main_window.show()
 
     def labeled_slider(self, text, *, range, value, tick_step):
         def on_change(slider):
