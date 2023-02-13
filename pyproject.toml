@@ -9,8 +9,8 @@ author = "Anaconda"
 author_email = "msmith@anaconda.com"
 
 [tool.briefcase.app.ip2p]
-formal_name = "InstructPix2Pix"
-description = "InstructPix2Pix"
+formal_name = "Hackdays AI image generator"
+description = "Hackdays AI image generator"
 icon = "src/ip2p/resources/ip2p"
 sources = [
     "src/ip2p",
@@ -20,7 +20,10 @@ test_sources = [
 ]
 
 requires = [
-    "pillow"
+    "pillow",
+    "diffusers",
+    "transformers",
+    "accelerate",
 ]
 test_requires = [
     "pytest",
