@@ -1,4 +1,5 @@
 import io
+import multiprocessing
 from shutil import rmtree
 from threading import Thread
 
@@ -157,4 +158,7 @@ class HackdaysAIApp(toga.App):
 
 
 def main():
+    # https://github.com/beeware/briefcase-macOS-app-template/issues/7
+    multiprocessing.set_start_method("fork")
+
     return HackdaysAIApp()
